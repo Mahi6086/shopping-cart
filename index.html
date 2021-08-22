@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Tailwindcss and Fonts -->
+
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap" rel="stylesheet" />
+    <!-- Custom styling -->
+    <style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+        }
+        
+        .selected {
+            border: 1px solid purple;
+        }
+    </style>
+    <title>Canva</title>
+</head>
+
+<body>
+    <main>
+        <div class="container mx-auto px-4 md:px-2">
+            <div class="grid grid-cols-2">
+                <!-- display Image -->
+                <div class="p-5 border rounded border-gray-200 m-5">
+                    <div class="h-96 w-full">
+                        <img src="images/1.jpg" id="art" class="w-full rounded h-full object-cover" alt="" />
+                    </div>
+                </div>
+                <!-- Options -->
+                <div class="mt-10 max-w-lg mx-auto">
+                    <!--  description -->
+                    <span id="desc" class="text-lg text-gray-700">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum
+              beatae laboriosam, commodi quis tempore necessitatibus.
+              Voluptatibus minima aut non doloremque?
+            </span>
+                    <!-- product-price -->
+                    <span class="text-2xl font-medium pb-2" id="price">750</span>$
+                    <div class="flex  pt-10">
+                        <!-- button-1 -->
+                        <button class="
+                  p-5
+                  border border-gray-200
+                  shadow
+                  hover:border-purple-600
+                  hover:shadow-lg
+                  rounded
+                  mr-3
+                  
+                " id="free">
+                Free Shipping - 0$
+              </button>
+                        <!-- button-2 -->
+                        <button id="express" class="
+                  p-5
+                  border border-gray-200
+                  shadow
+                  hover:border-purple-600
+                  hover:shadow-lg
+                  rounded
+                  mr-3
+                  
+                ">
+                Express Shipping - 30$
+              </button >
+                       <!-- button-3 -->
+              <button id="charge" class="p-5 border border-gray-200 shadow hover:border-purple-600 hover:shadow-lg rounded">
+                Rocket Shipping - 50$
+              </button>
+                    </div>
+                    <!-- image-1 -->
+                    <div class="flex justify-between items-center mt-40">
+                        <div class="
+                  p-5
+                  my-2
+                  border
+                  cursor-pointer
+                  hover:border-purple-600 hover:shadow-lg
+                  rounded " id="first">
+
+                            <img src="images/1.jpg" class="w-20 h-20" alt="" />
+                        </div>
+                        <div class="
+                  p-5
+                  my-2
+                  border
+                  cursor-pointer
+                  hover:border-purple-600
+                  rounded
+                " id="second">
+                            <!-- image-2 -->
+                            <img src="images/3.jpg" class="w-20 h-20" alt="" />
+                        </div>
+                        <div class="
+                  p-5
+                  my-2
+                  border
+                  cursor-pointer
+                  hover:border-purple-600
+                  rounded
+                " id="third">
+                            <!-- image-3-->
+                            <img src="images/4.jpg" class="w-20 h-20" alt="" />
+                        </div>
+                    </div>
+                    <!-- shipping-Field -->
+                    <div class="text-2xl py-2">
+                        Shipping Charge: <span id="shipping">0</span>$
+                    </div>
+                    <!-- update total price -->
+                    <div class="text-2xl py-2">Total: <span id="total">750</span>$</div>
+                    <button id="buy-now" class="
+                px-4
+                py-2
+                text-xl
+                border border-purple-200
+                mt-6
+                shadow
+                rounded
+                hover:border-purple-600
+                hover:shadow-xl
+              ">
+              Buy Now
+            </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Custom js -->
+    <script>
+        //call
+        const img = document.getElementById('art')
+        const desc = document.getElementById('desc');
+        const price = document.getElementById('price');
+        const shippingField = document.getElementById('shipping');
+        const total = document.getElementById('total');
+
+        //update total price
+        function updateTotal() {
+            // console.log(shippingField.innerText, price.innerText);
+
+            const shippingCharge = Number(shippingField.innerText);
+            const productPrice = Number(price.innerText);
+
+            const grandTotal = shippingCharge + productPrice;
+
+            total.innerText = grandTotal;
+        }
+
+        function isContain(elem) {
+            return elem.classList.contains('selected');
+        }
+
+        //button - 1
+        document.getElementById('free').addEventListener('click', function() {
+
+                if (!isContain) {
+                    document.getElementById('free').classList.add('selected');
+                    document.getElementById('express').classList.remove('selected');
+                    document.getElementById('charge').classList.remove('selected');
+                }
+                shippingField.innerText = '0';
+                updateTotal();
+            })
+            //button - 2
+        document.getElementById('express').addEventListener('click', function() {
+                if (!isContain) {
+                    document.getElementById('free').classList.remove('selected');
+                    document.getElementById('charge').classList.remove('selected');
+                    document.getElementById('express').classList.add('selected');
+
+                }
+
+                shippingField.innerText = '30';
+                updateTotal();
+            })
+            //button - 3
+        document.getElementById('charge').addEventListener('click', function() {
+
+                if (!isContain) {
+                    document.getElementById('charge').classList.add('selected');
+                    document.getElementById('free').classList.remove('selected');
+                    document.getElementById('express').classList.remove('selected');
+
+                }
+                shippingField.innerText = '50';
+                updateTotal();
+            })
+            /* image - 1 */
+        document.getElementById('first').addEventListener('click', function() {
+            //set
+            img.src = "images/1.jpg"
+            desc.innerText = 'first-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum beatae laboriosam, commodi quis tempore necessitatibus. Voluptatibus minima aut non doloremque?'
+            price.innerText = '750';
+
+            if (!isContain) {
+                document.getElementById('first').classList.add('selected');
+                document.getElementById('second').classList.remove('selected');
+                document.getElementById('third').classList.remove('selected');
+            }
+
+            updateTotal();
+        });
+        /* image - 2 */
+        document.getElementById('second').addEventListener('click', function() {
+            //set
+            img.src = "images/3.jpg"
+            desc.innerText = 'second-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum beatae laboriosam, commodi quis tempore necessitatibus. Voluptatibus minima aut non doloremque?'
+            price.innerText = '520';
+
+            if (!isContain) {
+                document.getElementById('first').classList.remove('selected');
+                document.getElementById('second').classList.add('selected');
+                document.getElementById('third').classList.remove('selected');
+            }
+
+            updateTotal();
+        });
+        /* image - 3 */
+        document.getElementById('third').addEventListener('click', function() {
+            //set
+            img.src = "images/4.jpg"
+            desc.innerText = 'Third-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum beatae laboriosam, commodi quis tempore necessitatibus. Voluptatibus minima aut non doloremque?'
+            price.innerText = '350';
+
+            if (!isContain) {
+                document.getElementById('first').classList.remove('selected');
+                document.getElementById('second').classList.remove('selected');
+                document.getElementById('third').classList.add('selected');
+            }
+
+
+            updateTotal();
+        });
+    </script>
+</body>
+
+</html>
